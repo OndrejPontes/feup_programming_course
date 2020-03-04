@@ -1,4 +1,5 @@
 #include "Lab_01.h"
+#include "utils.h"
 
 void Lab_01::task_01()
 {
@@ -77,41 +78,20 @@ void Lab_01::task_04()
 
 }
 
-std::vector<int> getValuesFromTimeString(std::string text)
-{
-    const std::regex delimiters("[^\\s.,-:;!?]+");
-    std::vector<int> result;
-    int x;
-
-    auto words_begin = std::sregex_iterator(text.begin(), text.end(), delimiters);
-    auto words_end = std::sregex_iterator();
-
-    for (std::sregex_iterator i = words_begin; i != words_end; ++i)
-    {
-        std::istringstream((*i).str()) >> x;
-        result.push_back(x);
-    }
-    return result;
-}
-
 void Lab_01::task_05()
 {
-    std::string time1, time2;
     int h, m, s;
-    std::vector<int> time1_vec, time2_vec;
+    std::vector<int> time1, time2;
 
     std::cout << "Task 1.5 Time counter" << std::endl;
     std::cout << "Time1 (hours minutes seconds) ? ";
-    std::getline(std::cin, time1);
+    time1 = getNumbersFromUser();
     std::cout << "Time2 (hours minutes seconds) ? ";
-    std::getline(std::cin, time2);
+    time2 = getNumbersFromUser();
 
-    time1_vec = getValuesFromTimeString(time1);
-    time2_vec = getValuesFromTimeString(time2);
-
-    s = time1_vec.at(2) + time2_vec.at(2);
-    m = time1_vec.at(1) + time2_vec.at(1) + s / 60;
-    h = time1_vec.at(0) + time2_vec.at(0) + m / 60;
+    s = time1.at(2) + time2.at(2);
+    m = time1.at(1) + time2.at(1) + s / 60;
+    h = time1.at(0) + time2.at(0) + m / 60;
 
     std::cout << "Time1 + Time2 = " << h / 24 << " days, " << h % 24 << " hours, " << m % 60 << " minutes, " << s % 60 << " seconds." << std::endl;
 }
