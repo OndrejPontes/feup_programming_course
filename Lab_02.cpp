@@ -66,3 +66,23 @@ void Lab_02::task_02()
         std::cout << "You can create triangle with length of these sides." << std::endl;
 }
 
+void Lab_02::task_03()
+{
+    int a, b;
+
+    std::cout << "Task 2.3 INT_MAX and INT_MIN tester" << std::endl;
+	
+    std::cout << "Give me first number: ";
+    std::cin >> a;
+	std::cout << "Give me next number: ";
+    std::cin >> b;
+
+    if (b > 0 && a > INT_MAX - b)
+        std::cout << "sum overflow" << std::endl;
+    else if (b < 0 && a < INT_MIN - b)
+        std::cout << "sum underflow" << std::endl;
+    else
+        std::cout << "Hooray, numbers are countable. Result is: " << a + b << std::endl;
+}
+
+

@@ -11,5 +11,6 @@ int main()
 	//Lab_01::task_06();
 	
 	//Lab_02::task_01();
-	Lab_02::task_02();
+	//Lab_02::task_02();
+	Lab_02::task_03();
 }
