@@ -2,6 +2,8 @@
 #define LAB_02_H
 
 #include <iostream>
+#include <vector>
+#include <algorithm>
 
 namespace Lab_02
 {
