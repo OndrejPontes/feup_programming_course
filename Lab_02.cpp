@@ -85,4 +85,22 @@ void Lab_02::task_03()
         std::cout << "Hooray, numbers are countable. Result is: " << a + b << std::endl;
 }
 
+void Lab_02::task_04()
+{
+    int weight;
+	
+    std::cout << "Task 2.4 merchandise transport price calculator." << std::endl;
+    std::cout << "Give me weight of merchandise in grams: ";
+    std::cin >> weight;
+
+    std::cout << "Total price is: ";
+    if (weight <= 500)
+        std::cout << "5 euros." << std::endl;
+    else if (weight <= 1000)
+        std::cout << 5 + 1.5 * ceil((weight - 500) / float(100)) << " euros." << std::endl;
+    else
+        std::cout << 12.5 + 5 * ceil((weight - 1000) / float(250)) << " euros." << std::endl;     
+}
+
+
 
