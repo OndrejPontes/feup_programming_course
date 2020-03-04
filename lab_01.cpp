@@ -1,23 +1,15 @@
-#include <iostream>
-#include <iomanip>
-#include <limits>
-#define _USE_MATH_DEFINES
-#include <math.h>
-#include <regex>
-#include <string>
-#include <sstream>
-#include <vector>
+#include "Lab_01.h"
 
-void task11()
+void Lab_01::task_01()
 {
     char x;
 
-    std::cout << "Task 1.1 Write any characterstd::endl";
+    std::cout << "Task 1.1 Write any character" << std::endl;
     std::cin >> x;
     std::cout << "ASCII value of character " << x << "is: " << int(x) << std::endl;
 }
 
-void task12()
+void Lab_01::task_02()
 {
     int a, b, c;
     float mean;
@@ -42,7 +34,7 @@ void task12()
     std::cout << "C-mean = " << mean - c << std::endl;
 }
 
-void task13()
+void Lab_01::task_03()
 {
     float p, r;
 
@@ -56,7 +48,7 @@ void task13()
     std::cout << "Mass of the sphere is: " << 4 / 3 * (p * M_PI * r) << "Kg" << std::endl;
 }
 
-void task14()
+void Lab_01::task_04()
 {
     int a, b, c, d, e, f;
     float x, y;
@@ -102,7 +94,7 @@ std::vector<int> getValuesFromTimeString(std::string text)
     return result;
 }
 
-void task15()
+void Lab_01::task_05()
 {
     std::string time1, time2;
     int h, m, s;
@@ -165,7 +157,7 @@ public:
     }
 };
 
-void task16()
+void Lab_01::task_06()
 {
     int x, y;
     double semiperimeter;
@@ -193,13 +185,8 @@ void task16()
 
     Triangle t = Triangle(a, b, c);
 
-    std::cout << "Enter semiperimeter: ";
+    std::cout << "Enter semi-perimeter: ";
     std::cin >> semiperimeter;
 
     std::cout << "Area of your triangle is: " << t.area(semiperimeter);
-}
-
-int main()
-{
-    task16();
 }
