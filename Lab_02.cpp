@@ -24,6 +24,13 @@ void Lab_02::task_01()
     x = float(c * e - b * f) / float(a * e - b * d);
     y = float(a * f - c * d) / float(a * e - b * d);
 
-    std::cout << "x = " << x;
-    std::cout << "y = " << y;
+    if (isnan(x) || isnan(y))
+    {
+        std::cout << "impossible system" << std::endl;
+    }
+    else
+    {
+        std::cout << "x = " << x;
+        std::cout << "y = " << y;
+    }
 }
