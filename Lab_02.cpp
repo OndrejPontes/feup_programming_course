@@ -1,6 +1,5 @@
 #include "Lab_02.h"
 
-
 void Lab_02::task_01()
 {
     int a, b, c, d, e, f;
@@ -102,6 +101,29 @@ void Lab_02::task_04()
         std::cout << 12.5 + 5 * ceil((weight - 1000) / float(250)) << " euros." << std::endl;     
 }
 
+void Lab_02::task_05()
+{
+    std::vector<int> input;
+    double diskriminant;
+	
+    std::cout << "Task 2.5 calculator of quadratic equation." << std::endl;
+    std::cout << "Solution of Ax^2 + Bx + C = 0" << std::endl;
+    std::cout << "Insert the coefficients (A B C): ";
+	
+    input = getNumbersFromUser();
+    diskriminant = std::pow(input.at(1), 2) - 4 * input.at(0) * input.at(2);
+
+    if (diskriminant < 0)
+        std::cout << "Equation doesn't have any solution in real numbers." << std::endl;
+    else if (diskriminant == 0)
+        std::cout << "The equation has 1 complex root: " << -input.at(1) / 2 * input.at(0) << std::endl;
+    else
+    {
+        double x1 = -input.at(1) + std::sqrt(diskriminant) / 2 * input.at(0);
+        double x2 = -input.at(1) - std::sqrt(diskriminant) / 2 * input.at(0);
+        std::cout << "The equation has 2 complex roots: " << x1 << " and " << x2 << std::endl;
+    }
+}
 
 
 

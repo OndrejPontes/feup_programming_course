@@ -1,3 +1,4 @@
+#include "Game.h"
 #include "Lab_01.h"
 #include "Lab_02.h"
 
@@ -13,5 +14,7 @@ int main()
 	//Lab_02::task_01();
 	//Lab_02::task_02();
 	//Lab_02::task_03();
-	Lab_02::task_04();
+	//Lab_02::task_04();
+	//Lab_02::task_05();
+	Game();
 }
