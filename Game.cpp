@@ -10,6 +10,7 @@ Game::Game()
 		capture();
 		checkGameStatus();
 	}
+	announceWinner();
 }
 
 void Game::printBoard(bool wait) // TODO: add this as onChange m_holes vector handler
@@ -29,6 +30,8 @@ void Game::printBoard(bool wait) // TODO: add this as onChange m_holes vector ha
 	printNumbers(green);
 	if(wait)
 		this_thread::sleep_for(chrono::milliseconds(500)); // wait for 0.5sec to recognize changes by eye
+	if (!m_error_message.empty())
+		printWithColor(m_error_message, red, true);
 }
 
 void Game::collect()
@@ -42,10 +45,19 @@ void Game::collect()
 	else
 		m_hole_index_to_collect = 12 - m_hole_index_to_collect;
 
-	m_seeds_collected = m_holes.at(m_hole_index_to_collect);
+	if (m_holes.at(m_hole_index_to_collect) != 0) // player is collecting from hole with seeds
+	{
+		m_seeds_collected = m_holes.at(m_hole_index_to_collect);
+		m_holes.at(m_hole_index_to_collect) = 0;
+		printBoard();
+	}
+	else if (m_holes.at(m_hole_index_to_collect) != 0) // player is collecting from hole without seeds
+	{
+		m_error_message = "You cannot collect seeds from empty hole! Choose another hole.";
+		printBoard();
+		collect();
+	}
 	
-	m_holes.at(m_hole_index_to_collect) = 0;
-	printBoard();
 }
 
 void Game::sow()
@@ -68,7 +80,7 @@ void Game::sow()
 void Game::capture()
 {
 	int index = (m_hole_index_to_collect + m_seeds_collected) % 12;
-
+	
 	while(
 		(m_holes.at(index) == 2 || m_holes.at(index) == 3) &&       // capture seeds only in case there are 2 or 3 of them
 		((m_active_player == south && 11 >= index && index >= 6) || // capture seeds just from opponent side
@@ -98,6 +110,17 @@ void Game::changePlayer()
 	else
 		m_active_player = south;
 }
+
+void Game::announceWinner()
+{
+	if (m_south_score > m_north_score)
+		cout << "South player won. Congratulation." << endl;
+	else if (m_south_score < m_north_score)
+		cout << "North player won. Congratulation." << endl;
+	else
+		cout << "Game ended as a draw. Good game." << endl;
+}
+
 
 void Game::printWithColor(string text, Color color, bool end)
 {
