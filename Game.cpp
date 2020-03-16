@@ -1,5 +1,29 @@
 #include "Game.h"
 
+class vector1 : std::vector<int>
+{
+	virtual void signal() {};
+	
+	void change(int index, int value)
+	{
+		std::vector<int>::at(index) = value;
+		signal();
+	}
+
+	int& at(int index) {
+		signal();
+		return std::vector<int>::at(index);
+	}
+};
+
+class vector2: vector1
+{
+	void signal() override
+	{
+		
+	}
+};
+
 Game::Game()
 {
 	while(m_game_continues)
@@ -17,30 +41,30 @@ void Game::printBoard(bool wait) // TODO: add this as onChange m_holes vector ha
 {
 	system("cls");
 	cout << endl;
-	printNumbers(blue);
+	printNumbers(Color::blue);
 	
 	for(auto i = 0; i < 11; i++)
 	{
-		printPlayerHole(green, i, m_south_score);
+		printPlayerHole(Color::green, i, m_south_score);
 		printHoles(i);
-		printPlayerHole(blue, i,m_north_score);
+		printPlayerHole(Color::blue, i,m_north_score);
 		
 		cout << endl;
 	}
-	printNumbers(green);
+	printNumbers(Color::green);
 	if(wait)
 		this_thread::sleep_for(chrono::milliseconds(500)); // wait for 0.5sec to recognize changes by eye
 	if (!m_error_message.empty())
-		printWithColor(m_error_message, red, true);
+		printWithColor(m_error_message, Color::red, true);
 }
 
 void Game::collect()
 {	
-	cout << "Player " << ((m_active_player == south) ? "South (green)" : "North (blue)") << " is on a move." << endl;
+	cout << "Player " << ((m_active_player == Player::south) ? "South (green)" : "North (blue)") << " is on a move." << endl;
 	cout << "Enter hole number to collect: ";
 	cin >> m_hole_index_to_collect;
 
-	if (m_active_player == south)
+	if (m_active_player == Player::south)
 		m_hole_index_to_collect--;
 	else
 		m_hole_index_to_collect = 12 - m_hole_index_to_collect;

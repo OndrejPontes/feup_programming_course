@@ -1,6 +1,6 @@
 #include "utils.h"
 
-std::vector<int> getNumbersFromUser()
+std::vector<int> getNumbersFromUser() //4 4 6:9;10a12
 {
     std::string text;
     std::getline(std::cin, text);
@@ -14,8 +14,7 @@ std::vector<int> getNumbersFromUser()
 
     for (std::sregex_iterator i = words_begin; i != words_end; ++i)
     {
-        std::istringstream((*i).str()) >> x;
-        result.push_back(x);
+        result.push_back(std::stoi((*i).str()));
     }
     return result;
 }

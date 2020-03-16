@@ -11,8 +11,8 @@
 
 using namespace std;
 
-enum Player { south, north };
-enum Color { red, green, blue, black};
+enum class Player { south, north };
+enum class Color { red, green, blue, black };
 
 class Game
 {
@@ -22,7 +22,7 @@ private:
 	// vector<int> m_holes = vector<int>(12, 4);
 	vector<int> m_holes = vector<int>{30,2,2,2,2,2,2,2,2,2,2,2}; // TODO: remove this line, it is just for testing
 	bool m_game_continues = true;
-	Player m_active_player = south;
+	Player m_active_player = Player::south;
 	int m_hole_index_to_collect;
 	int m_seeds_collected;
 	string m_error_message;
@@ -34,7 +34,7 @@ private:
 	void checkGameStatus();
 	void changePlayer();
 	void announceWinner();
-	void printWithColor(string text, Color color = black, bool end = false);
+	void printWithColor(string text, Color color = Color::black, bool end = false);
 	void printPlayerHole(Color color, int row, int value);
 	void printHoles(int row);
 	void printNumbers(Color color);
